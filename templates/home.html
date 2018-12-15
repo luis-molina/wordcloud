@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>Word cloud generator</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <img src="/media/img/output.png" alt="Generated word cloud" class="img-responsive" style="max-height: 35rem; margin:0 auto">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form action="/" method="POST">
+            {% csrf_token %} {{ form.as_p }}
+            <div class="row">
+                <div class="col-12">
+                    <label for="input_text">Input the text to process:</label>
+                    <textarea name="input_text" id="input_text" cols="30" rows="5" class="form-control" required>{{input_text}}</textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="max_words">Max words wanted</label>
+                    <input type="number" name="max_words" id="max_words" step="1" min="1" value="{{max_words}}" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="language">Language</label>
+                    <select name="language" id="language" class="form-control" required>
+                        {% for value,text in all_languages %}
+                            <option value="{{value}}" {% ifequal value language %} selected {% endifequal %}>{{text}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="custom_stopwords_text">Input extra stopwords you want to consider (one per line):</label>
+                    <textarea name="custom_stopwords_text" id="custom_stopwords_text" cols="30" rows="5" class="form-control">{{custom_stopwords_text}}</textarea>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary" style="width:100%">Generate</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
