@@ -4,7 +4,15 @@
         <h1>Word cloud generator</h1>
     </div>
 </div>
-
+{% if messages %}
+<div class="span12">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <img src="/media/img/output.png" alt="Generated word cloud" class="img-responsive" style="max-height: 35rem; margin:0 auto">

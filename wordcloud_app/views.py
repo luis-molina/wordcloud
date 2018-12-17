@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib import messages
 from .forms import TextForm
 from .controllers.freq_dist_calc import calculateAndGenerateCloud
 
@@ -18,11 +19,18 @@ def homePageView(request):
         #if the form is valid
         if form.is_valid():
             # generate the cloud with the attributes obtained from the form
-            calculateAndGenerateCloud(form.cleaned_data['input_text'],form.cleaned_data['max_words'],form.cleaned_data['language'],form.cleaned_data['custom_stopwords_text'])
+            r = calculateAndGenerateCloud(form.cleaned_data['input_text'],form.cleaned_data['max_words'],form.cleaned_data['language'],form.cleaned_data['custom_stopwords_text'])            
+            if r=='unexpected-fail':
+                messages.error(request, 'Oops, something bad happened')
+            elif r=='no-words-for-cloud':
+                messages.error(request, 'Cloud can not be generated since no words are obtained from your paremeters.')
             # show the page with the values previously submitted in the form
             return render(request, 'home.html',{"input_text":form.cleaned_data['input_text'],"max_words":form.cleaned_data['max_words'],"all_languages":all_languages,"language":form.cleaned_data['language'],"custom_stopwords_text":form.cleaned_data['custom_stopwords_text']})
         else:
-            return HttpResponse('Invalid')
+            #send an error
+            messages.error(request, 'Please verify your parameters, some of then are not valid.')
+            # show the page with the values previously submitted in the form
+            return render(request, 'home.html',{"input_text":form.cleaned_data['input_text'],"max_words":form.cleaned_data['max_words'],"all_languages":all_languages,"language":form.cleaned_data['language'],"custom_stopwords_text":form.cleaned_data['custom_stopwords_text']})
     else:
         # generate the cloud with the default attributes
         calculateAndGenerateCloud(default_input_text,default_max_words,default_language,default_custom_stopwords_text)
