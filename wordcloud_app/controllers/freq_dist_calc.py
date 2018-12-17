@@ -6,6 +6,7 @@ import sys
 import codecs
 import nltk
 from .cloud import generate_cloud_from_frequencies
+import re
 
 def calculateAndGenerateCloud(input_text,max_words,language,custom_stopwords_text):
 
@@ -24,9 +25,12 @@ def calculateAndGenerateCloud(input_text,max_words,language,custom_stopwords_tex
     # Merge the language stopwords with the custom stopwords
     all_stopwords = default_language_stopwords | custom_stopwords
 
+    # first, remove all punctuation using regex
+    input_text = re.sub(r'[^\w\s]','',input_text)
+
     words = nltk.word_tokenize(input_text)
 
-    # Remove single character words, which are mostly punctuation
+    # second check for punctuation, remove single character words, which are mostly punctuation
     words = [word for word in words if len(word) > 1]
 
     # Remove numbers
