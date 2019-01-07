@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "22c458c6371c6caa7de8783ea4272a7d7c3eef00eaac7e89f37512c17747374b"
+            "sha256": "03b3d7efbcc3cf761ef1f14d3dc374c3e3dbddbb023798842ef3455f2ad3e914"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -207,7 +207,6 @@
                 "sha256:1ba7de6e3179f77f390fa70a363fcd8a3708dd79df7994738f0ba20e6b4eec4a",
                 "sha256:2804995d361438fde75114543d5e48cf4b9f6bc74327c7ed6973ccba0e11221d",
                 "sha256:2c67ae08992ced6ee465b31e307e2d686c593fd5d25459b7bf79effd08e5b797",
-                "sha256:518e9ab9324631bd237f2126a7b4dc864b3772e48927c2f662a0b4cc1f3f9d6e",
                 "sha256:5259f04f0e06a58c313e4c9c145a11ca8c4443bb5d9195414160c0f359d047d8",
                 "sha256:5425b176d9d8a634130db398400a830aa1f43a2bd1d60e16801764ae2b44ed4a",
                 "sha256:578996a2ac83d2199f96661e66af587f010ffb472744fd834186cdfd060d5e38",
@@ -223,7 +222,7 @@
                 "sha256:d13cce1ad31d5dc6d9d276a5745fe1067d40b680901fad45527bad660f28232e",
                 "sha256:f2df3140b4355b589316f4bc80e08f4385cd74a57d6de6e97d2f85847e2161c5"
             ],
-            "path": "wordcloud-1.5.0-cp36-cp36m-win32.whl",
+            "index": "pypi",
             "version": "==1.5.0"
         }
     },
